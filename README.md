@@ -1,1 +1,0 @@
-# janmitra-ai-platform
