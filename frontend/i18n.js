@@ -17,7 +17,7 @@ const I18N = {
         startBtn: "Start Analysis",
         introVoiceBtn: "Listen",
         // Voice guidance - Page 1
-        voiceWelcome: "Welcome to JanMitra AI.  This system helps you discover government welfare schemes . ",
+        voiceWelcome: "Welcome to JanMitra AI.  This system helps you discover government welfareschemes . ",
         voiceLangSelected: "You have selected English. Click the Start Analysis button to begin. ",
         voiceButtonContinue: "Starting eligibility analysis.",
         // Page 2
@@ -458,5 +458,6 @@ const ANALYSIS_LABELS = {
 function getAnalysisLabel(key, lang) {
     return (ANALYSIS_LABELS[lang] && ANALYSIS_LABELS[lang][key]) || ANALYSIS_LABELS.en[key] || key;
 }
+
 
 
