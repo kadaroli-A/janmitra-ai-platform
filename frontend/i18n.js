@@ -17,8 +17,8 @@ const I18N = {
         startBtn: "Start Analysis",
         introVoiceBtn: "Listen",
         // Voice guidance - Page 1
-        voiceWelcome: "Welcome to JanMitra AI. This system helps you discover government welfare schemes you are eligible for.",
-        voiceLangSelected: "You have selected English. Click the Start Analysis button to begin.",
+        voiceWelcome: "Welcome to JanMitra AI.  This system helps you discover government welfare schemes . ",
+        voiceLangSelected: "You have selected English. Click the Start Analysis button to begin. ",
         voiceButtonContinue: "Starting eligibility analysis.",
         // Page 2
         page2Title: "Applicant Details",
@@ -209,8 +209,8 @@ const I18N = {
         startBtn: "பகுப்பாய்வைத் தொடங்கு",
         introVoiceBtn: "கேளுங்கள்",
         // Voice guidance - Page 1
-        voiceWelcome: "ஜன்மித்ரா AI-க்கு வரவேற்கிறோம். இந்த அமைப்பு நீங்கள் தகுதியுடைய அரசு நலத் திட்டங்களைக் கண்டறிய உதவுகிறது.",
-        voiceLangSelected: "நீங்கள் தமிழ் மொழியைத் தேர்ந்தெடுத்துள்ளீர்கள். தொடங்க ஸ்டார்ட் அனாலிசிஸ் பட்டனைக் கிளிக் செய்யவும்.",
+        voiceWelcome: "ஜன்மித்ரா A I-க்கு வரவேற்கிறோம். இந்த அமைப்பு நீங்கள் தகுதியுடைய அரசு நலத் திட்டங்களைக் கண்டறிய உதவுகிறது. ",
+        voiceLangSelected: "நீங்கள் தமிழ் மொழியைத் தேர்ந்தெடுத்துள்ளீர்கள்.  தொடங்க ஸ்டார்ட் அனாலிசிஸ் பட்டனைக் கிளிக் செய்யவும்.",
         voiceButtonContinue: "தகுதி பகுப்பாய்வு தொடங்குகிறது.",
         // Page 2
         page2Title: "விண்ணப்பதாரர் விவரங்கள்",
@@ -458,4 +458,5 @@ const ANALYSIS_LABELS = {
 function getAnalysisLabel(key, lang) {
     return (ANALYSIS_LABELS[lang] && ANALYSIS_LABELS[lang][key]) || ANALYSIS_LABELS.en[key] || key;
 }
+
 
