@@ -17,7 +17,7 @@ const I18N = {
         startBtn: "Start Analysis",
         introVoiceBtn: "Listen",
         // Voice guidance - Page 1
-        welcome_message: "Welcome to JanMitra AI. This system helps you discover Indian government welfare schemes. You have selected English as your language. Please click the Start Analysis button to begin."
+        welcome_message: "Welcome to JanMitra AI. This system helps you discover Indian government welfare schemes. You have selected English as your language. Please click the Start Analysis button to begin.",
         voiceButtonContinue: "Starting eligibility analysis.",
         // Page 2
         page2Title: "Applicant Details",
@@ -112,7 +112,7 @@ const I18N = {
         startBtn: "विश्लेषण शुरू करें",
         introVoiceBtn: "सुनें",
         // Voice guidance - Page 1
-        welcome_message: "जनमित्र एआई में आपका स्वागत है। यह प्रणाली आपको भारतीय सरकारी कल्याण योजनाओं की जानकारी देती है। आपने हिंदी भाषा चुनी है। शुरू करने के लिए कृपया 'स्टार्ट एनालिसिस' बटन पर क्लिक करें।"
+        welcome_message: "जनमित्र एआई में आपका स्वागत है। यह प्रणाली आपको भारतीय सरकारी कल्याण योजनाओं की जानकारी देती है। आपने हिंदी भाषा चुनी है। शुरू करने के लिए कृपया 'स्टार्ट एनालिसिस' बटन पर क्लिक करें।",
         voiceButtonContinue: "पात्रता विश्लेषण शुरू हो रहा है।",
         // Page 2
         page2Title: "आवेदक विवरण",
@@ -207,7 +207,7 @@ const I18N = {
         startBtn: "பகுப்பாய்வைத் தொடங்கு",
         introVoiceBtn: "கேளுங்கள்",
         // Voice guidance - Page 1
-        welcome_message: "ஜன்மித்ரா ஏ ஐ-க்கு வரவேற்கிறோம். இந்த அமைப்பு இந்திய அரசின் நலத்திட்டங்களை அறிந்து கொள்ள உதவுகிறது. நீங்கள் தமிழ் மொழியை தேர்வு செய்துள்ளீர்கள். தொடங்க 'ஸ்டார்ட் அனாலிசிஸ்' பொத்தானை கிளிக் செய்யவும்."
+        welcome_message: "ஜன்மித்ரா ஏ ஐ-க்கு வரவேற்கிறோம். இந்த அமைப்பு இந்திய அரசின் நலத்திட்டங்களை அறிந்து கொள்ள உதவுகிறது. நீங்கள் தமிழ் மொழியை தேர்வு செய்துள்ளீர்கள். தொடங்க 'ஸ்டார்ட் அனாலிசிஸ்' பொத்தானை கிளிக் செய்யவும்.",
         voiceButtonContinue: "தகுதி பகுப்பாய்வு தொடங்குகிறது.",
         // Page 2
         page2Title: "விண்ணப்பதாரர் விவரங்கள்",
@@ -455,5 +455,3 @@ const ANALYSIS_LABELS = {
 function getAnalysisLabel(key, lang) {
     return (ANALYSIS_LABELS[lang] && ANALYSIS_LABELS[lang][key]) || ANALYSIS_LABELS.en[key] || key;
 }
-
-
