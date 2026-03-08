@@ -1534,7 +1534,7 @@ function sendChatbotMessage() {
 
     addChatbotMessage(data.response, 'bot');
 
-    const audio = new Audio("http://127.0.0.1:8000/audio/" + data.audio);
+   const audio = new Audio("https://janmitra-backend.onrender.com/audio/" + data.audio);
     audio.play();
 
 }, 500);
@@ -2341,5 +2341,6 @@ async function askBackendAI(question, lang) {
 } finally {
     aiRequestRunning = false;
 }
+
 
 }
