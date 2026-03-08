@@ -1220,9 +1220,14 @@ function goToGuide() {
     buildJsonOutput();
     document.getElementById('restart-btn-text').textContent = t('restartBtn', lang);
     const firstScheme = analysisResults.eligible[0].scheme.name[lang];
+   
     speakText(t('voicePage5', lang), lang);
+   
+    setTimeout(() => {
+        speakText(t('welcome_message', lang), lang);
+    }, 500);
     setTimeout(() => { speakText(t('voiceChatbotReminder', lang), lang); }, 10000);
-}
+    }
 
 function switchGuideScheme(index) {
     activeGuideSchemeIndex = index;
@@ -2344,3 +2349,4 @@ async function askBackendAI(question, lang) {
 
 
 }
+
