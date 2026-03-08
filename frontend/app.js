@@ -1220,14 +1220,9 @@ function goToGuide() {
     buildJsonOutput();
     document.getElementById('restart-btn-text').textContent = t('restartBtn', lang);
     const firstScheme = analysisResults.eligible[0].scheme.name[lang];
-   
     speakText(t('voicePage5', lang), lang);
-   
-    setTimeout(() => {
-        speakText(t('welcome_message', lang), lang);
-    }, 500);
     setTimeout(() => { speakText(t('voiceChatbotReminder', lang), lang); }, 10000);
-    }
+}
 
 function switchGuideScheme(index) {
     activeGuideSchemeIndex = index;
@@ -1539,7 +1534,7 @@ function sendChatbotMessage() {
 
     addChatbotMessage(data.response, 'bot');
 
-   const audio = new Audio("https://janmitra-backend.onrender.com/audio/" + data.audio);
+    const audio = new Audio("http://127.0.0.1:8000/audio/" + data.audio);
     audio.play();
 
 }, 500);
@@ -2347,6 +2342,4 @@ async function askBackendAI(question, lang) {
     aiRequestRunning = false;
 }
 
-
 }
-
