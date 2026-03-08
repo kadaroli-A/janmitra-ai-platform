@@ -17,7 +17,7 @@ const I18N = {
         startBtn: "Start Analysis",
         introVoiceBtn: "Listen",
         // Voice guidance - Page 1
-        welcome_message: "Welcome to JanMitra A I. This system helps you discover Indian government welfare schemes. You have selected English as your language. Please click the Start Analysis button to begin."
+        welcome_message: "Welcome to JanMitra AI. This system helps you discover Indian government welfare schemes. You have selected English as your language. Please click the Start Analysis button to begin."
         voiceButtonContinue: "Starting eligibility analysis.",
         // Page 2
         page2Title: "Applicant Details",
@@ -455,4 +455,5 @@ const ANALYSIS_LABELS = {
 function getAnalysisLabel(key, lang) {
     return (ANALYSIS_LABELS[lang] && ANALYSIS_LABELS[lang][key]) || ANALYSIS_LABELS.en[key] || key;
 }
+
 
