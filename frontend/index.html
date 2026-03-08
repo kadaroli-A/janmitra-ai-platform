@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description"
+        content="JanMitra AI — Voice-first multilingual government scheme intelligence agent for Bharat. Check eligibility, verify schemes, and get guided application support in Tamil, Hindi, and English.">
+    <meta name="keywords"
+        content="JanMitra, government schemes, eligibility, PM-Kisan, welfare, India, AI agent, voice assistant, Bharat, multilingual">
+    <meta name="author" content="JanMitra AI">
+    <meta name="theme-color" content="#0a0a1a">
+    <title>JanMitra AI — Voice-First Government Scheme Intelligence Agent</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Ambient Background -->
+    <div class="ambient-bg">
+        <div class="ambient-orb orb-1"></div>
+        <div class="ambient-orb orb-2"></div>
+        <div class="ambient-orb orb-3"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="app-header" id="app-header">
+        <div class="header-inner">
+            <div class="brand">
+                <div class="header-logo">
+                    <img src="/static/assets/ai/eilik.png" alt="JanMitra AI" class="ai-logo">
+                    <span class="brand-name-inline">JanMitra <span class="brand-ai">AI</span></span>
+                </div>
+                <div class="brand-text">
+                    <p class="brand-tagline" id="brand-tagline">Voice-First Government Scheme Intelligence</p>
+                </div>
+            </div>
+            <div class="header-controls">
+                <!-- Progress indicator removed as per requirements -->
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="app-main" id="app-main">
+
+        <!-- PAGE 1: Language & Trust -->
+        <section class="page page-welcome active" id="page-1">
+            <!-- Four-Image Citizen Collage Background -->
+            <div class="background-container">
+                <div class="background-grid">
+                    <div class="bg-image bg-farmer"></div>
+                    <div class="bg-image bg-student"></div>
+                    <div class="bg-image bg-woman"></div>
+                    <div class="bg-image bg-elderly"></div>
+                </div>
+                <div class="overlay-gradient"></div>
+            </div>
+            
+            <div class="page-content hero-content">
+                <h2 class="welcome-title" id="welcome-title">Welcome | I'm JanMitra AI</h2>
+
+                <!-- Language Selection -->
+                <div class="language-selection" id="language-selection">
+                    <p class="lang-select-label" id="lang-select-label">Choose your language</p>
+                    <div class="language-cards">
+                        <button class="language-card active" data-lang="en" id="lang-card-en"
+                            onclick="selectLanguage('en')">
+                            <span class="lang-card-name">EN</span>
+                            <span class="lang-card-native">English</span>
+                        </button>
+                        <button class="language-card" data-lang="hi" id="lang-card-hi" onclick="selectLanguage('hi')">
+                            <span class="lang-card-name">HI</span>
+                            <span class="lang-card-native">हिन्दी</span>
+                        </button>
+                        <button class="language-card" data-lang="ta" id="lang-card-ta" onclick="selectLanguage('ta')">
+                            <span class="lang-card-name">TA</span>
+                            <span class="lang-card-native">தமிழ்</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Feature Highlights -->
+                <div class="feature-cards">
+                    <div class="feature-card" id="feature-voice">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+                                <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                                <line x1="12" y1="19" x2="12" y2="23" />
+                                <line x1="8" y1="23" x2="16" y2="23" />
+                            </svg>
+                        </div>
+                        <span class="feature-label" id="feature-voice-label">Voice First</span>
+                    </div>
+                    <div class="feature-card" id="feature-lang">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <line x1="2" y1="12" x2="22" y2="12" />
+                                <path
+                                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                            </svg>
+                        </div>
+                        <span class="feature-label" id="feature-lang-label">3 Languages</span>
+                    </div>
+                    <div class="feature-card" id="feature-secure">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            </svg>
+                        </div>
+                        <span class="feature-label" id="feature-secure-label">Scam Protection</span>
+                    </div>
+                    <div class="feature-card" id="feature-ai">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                        </div>
+                        <span class="feature-label" id="feature-ai-label">AI Agent Reasoning</span>
+                    </div>
+                </div>
+
+                <button class="cta-btn cta-btn-dark" id="start-btn" onclick="startAnalysis()">
+                    <span id="start-btn-text">Start Analysis</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="cta-arrow">
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                        <polyline points="12 5 19 12 12 19" />
+                    </svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- PAGE 2: Google Forms-Style Data Collection -->
+        <section class="page page-collect hidden" id="page-2">
+            <div class="page-content">
+                <div class="page-header">
+                    <h2 class="page-title" id="page2-title">Applicant Details</h2>
+                    <p class="page-desc" id="page2-desc">Please enter your details so I can analyze the schemes you are eligible for.</p>
+                </div>
+
+                <!-- INPUT MODE SELECTOR -->
+                <div class="input-mode-selector" id="input-mode-selector">
+                    <p class="mode-selector-label" id="mode-selector-label">Select your input mode</p>
+                    <div class="mode-buttons">
+                        <button class="mode-btn active" id="voice-mode-btn" onclick="selectInputMode('voice')">
+                            <span class="mode-icon">🎤</span>
+                            <span class="mode-text" id="voice-mode-text">Voice Input</span>
+                        </button>
+                        <button class="mode-btn" id="manual-mode-btn" onclick="selectInputMode('manual')">
+                            <span class="mode-icon">⌨️</span>
+                            <span class="mode-text" id="manual-mode-text">Enter Details Manually</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- VOICE INPUT MODE UI -->
+<div class="voice-mode-container" id="voice-mode-container">
+                    <div class="voice-instruction">
+                        <h3 class="voice-instruction-title" id="voice-instruction-title">Speak your details</h3>
+                        <div class="voice-instruction-example" id="voice-instruction-example">
+                            <p class="voice-example-label" id="voice-example-label">Voice Example</p>
+                            <p class="voice-example-text" id="voice-example-text">"My name is Ravi, I am 21 years old, male, a student from Tamil Nadu."</p>
+                        </div>
+                    </div>
+                    
+                    <div class="voice-mic-container">
+                        <button class="voice-mic-big" id="voice-mic-big" onclick="startFullVoiceInput()">
+                            <div class="voice-mic-pulse"></div>
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="voice-mic-icon">
+                                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                                <line x1="12" y1="19" x2="12" y2="23" stroke="currentColor" stroke-width="2"/>
+                                <line x1="8" y1="23" x2="16" y2="23" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </button>
+                        <p class="voice-mic-label" id="voice-mic-label">🎤 Tap and Speak Your Details</p>
+                    </div>
+
+                    <div class="voice-listening-indicator hidden" id="voice-listening-indicator">
+                        <div class="listening-wave">
+                            <span></span><span></span><span></span><span></span><span></span>
+                        </div>
+                        <p class="listening-text" id="listening-text">Listening...</p>
+                    </div>
+
+                    <!-- AI DETECTED DETAILS CARD -->
+                    <div class="ai-detected-card hidden" id="ai-detected-card">
+                        <div class="detected-header">
+                            <span class="detected-icon">🧠</span>
+                            <h3 class="detected-title" id="detected-title">AI Detected Details</h3>
+                        </div>
+                        <div class="detected-grid" id="detected-grid">
+                            <!-- Dynamic detected fields will be inserted here -->
+                        </div>
+                        <button class="edit-detected-btn" id="edit-detected-btn" onclick="editDetectedDetails()">
+                            <span id="edit-detected-text">Edit Details</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- MANUAL FORM MODE (EXISTING FORM) -->
+                <div class="manual-mode-container hidden" id="manual-mode-container">
+                    <!-- Google Forms-Style Form -->
+                    <form class="applicant-form" id="applicant-form" onsubmit="event.preventDefault(); submitApplicantForm();">
+                        
+                        <!-- Name Field -->
+                        <div class="form-row">
+                            <label class="form-label" id="label-name">Enter your Name</label>
+                            <div class="form-input-wrapper">
+                                <input type="text" class="form-input" id="input-name" required onfocus="triggerVoiceInstruction('voiceGuidanceName', currentLang)">
+                                <button type="button" class="voice-input-btn" onclick="startVoiceInput('name')" title="Voice input">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                                        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                                        <line x1="12" y1="19" x2="12" y2="23"/>
+                                        <line x1="8" y1="23" x2="16" y2="23"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Age Field -->
+                        <div class="form-row">
+                            <label class="form-label" id="label-age">Enter your Age</label>
+                            <div class="form-input-wrapper">
+                                <input type="number" class="form-input" id="input-age" min="1" max="120" required onfocus="triggerVoiceInstruction('voiceGuidanceAge', currentLang)">
+                                <button type="button" class="voice-input-btn" onclick="startVoiceInput('age')" title="Voice input">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                                        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                                        <line x1="12" y1="19" x2="12" y2="23"/>
+                                        <line x1="8" y1="23" x2="16" y2="23"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Gender Field -->
+                        <div class="form-row">
+                            <label class="form-label" id="label-gender">Select Gender</label>
+                            <select class="form-select" id="input-gender" required onfocus="triggerVoiceInstruction('voiceGuidanceGender', currentLang)">
+                                <option value="">Choose...</option>
+                                <option value="male" id="opt-male">Male</option>
+                                <option value="female" id="opt-female">Female</option>
+                                <option value="other" id="opt-other">Other</option>
+                            </select>
+                        </div>
+
+                        <!-- Occupation Field -->
+                        <div class="form-row">
+                            <label class="form-label" id="label-occupation">Select Occupation</label>
+                            <div class="form-input-wrapper">
+                                <select class="form-select" id="input-occupation" required onfocus="triggerVoiceInstruction('voiceGuidanceOccupation', currentLang)">
+                                    <option value="">Choose...</option>
+                                    <option value="farmer">Farmer</option>
+                                    <option value="student">Student</option>
+                                    <option value="unemployed">Unemployed</option>
+                                    <option value="self-employed">Self-employed</option>
+                                    <option value="private-employee">Private Employee</option>
+                                    <option value="government-employee">Government Employee</option>
+                                    <option value="daily-wage-worker">Daily Wage Worker</option>
+                                    <option value="housewife">Housewife</option>
+                                    <option value="retired">Retired</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <button type="button" class="voice-input-btn" onclick="startVoiceInput('occupation')" title="Voice input">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                                        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                                        <line x1="12" y1="19" x2="12" y2="23"/>
+                                        <line x1="8" y1="23" x2="16" y2="23"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- State Field -->
+                        <div class="form-row">
+                            <label class="form-label" id="label-state">Select State</label>
+                            <div class="form-input-wrapper">
+                                <select class="form-select" id="input-state" required onfocus="triggerVoiceInstruction('voiceGuidanceState', currentLang)">
+                                    <option value="">Choose...</option>
+                                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                    <option value="Assam">Assam</option>
+                                    <option value="Bihar">Bihar</option>
+                                    <option value="Chhattisgarh">Chhattisgarh</option>
+                                    <option value="Goa">Goa</option>
+                                    <option value="Gujarat">Gujarat</option>
+                                    <option value="Haryana">Haryana</option>
+                                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                    <option value="Jharkhand">Jharkhand</option>
+                                    <option value="Karnataka">Karnataka</option>
+                                    <option value="Kerala">Kerala</option>
+                                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                    <option value="Maharashtra">Maharashtra</option>
+                                    <option value="Manipur">Manipur</option>
+                                    <option value="Meghalaya">Meghalaya</option>
+                                    <option value="Mizoram">Mizoram</option>
+                                    <option value="Nagaland">Nagaland</option>
+                                    <option value="Odisha">Odisha</option>
+                                    <option value="Punjab">Punjab</option>
+                                    <option value="Rajasthan">Rajasthan</option>
+                                    <option value="Sikkim">Sikkim</option>
+                                    <option value="Tamil Nadu">Tamil Nadu</option>
+                                    <option value="Telangana">Telangana</option>
+                                    <option value="Tripura">Tripura</option>
+                                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                    <option value="Uttarakhand">Uttarakhand</option>
+                                    <option value="West Bengal">West Bengal</option>
+                                    <option value="Delhi">Delhi</option>
+                                    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                    <option value="Ladakh">Ladakh</option>
+                                    <option value="Puducherry">Puducherry</option>
+                                    <option value="Chandigarh">Chandigarh</option>
+                                    <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+                                    <option value="Lakshadweep">Lakshadweep</option>
+                                    <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                                </select>
+                                <button type="button" class="voice-input-btn" onclick="startVoiceInput('state')" title="Voice input">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                                        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                                        <line x1="12" y1="19" x2="12" y2="23"/>
+                                        <line x1="8" y1="23" x2="16" y2="23"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="form-submit-btn" id="form-submit-btn">
+                            <span id="form-submit-text">Analyze Eligibility</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Voice Input Status (shared) -->
+                <div class="voice-status hidden" id="voice-status">
+                    <div class="voice-wave">
+                        <span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                    <p id="voice-status-text">Listening...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 3: AI Agent Reasoning + Results -->
+        <section class="page page-reasoning hidden" id="page-3">
+            <div class="page-content">
+                <div class="page-header">
+                    <h2 class="page-title" id="page3-title">Analyzing Eligibility</h2>
+                    <p class="page-desc" id="page3-desc">Analyzing eligibility for government schemes...</p>
+                </div>
+
+                <!-- AI Assistant Animation -->
+                <div class="analyzing-container" id="analyzing-container">
+                    <div class="loading-spinner">
+                        <div class="spinner-ring"></div>
+                        <div class="spinner-ring"></div>
+                        <div class="spinner-ring"></div>
+                    </div>
+                    <p class="analyzing-message" id="analyzing-message">Analyzing your profile...</p>
+                    <div class="progress-steps" id="progress-steps">
+                        <p class="progress-step active" id="step-1">✓ Reading user profile</p>
+                        <p class="progress-step" id="step-2">⏳ Checking central government schemes</p>
+                        <p class="progress-step" id="step-3">⏳ Checking state government schemes</p>
+                        <p class="progress-step" id="step-4">⏳ Preparing personalized scheme results</p>
+                    </div>
+                </div>
+
+                <!-- Reasoning Animation (Hidden during loading) -->
+                <div class="reasoning-container hidden" id="reasoning-container">
+                    <div class="reasoning-brain">
+                        <div class="brain-pulse"></div>
+                        <div class="brain-icon">🧠</div>
+                    </div>
+                    <div class="reasoning-steps" id="reasoning-steps">
+                        <!-- Dynamic reasoning steps will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Results Summary (Only Eligible) -->
+                <div class="results-summary hidden" id="results-summary">
+                    <div class="results-header" id="results-header">
+                        <h3 id="results-title">Analysis Complete</h3>
+                        <p id="results-subtitle">Here's what I found for you</p>
+                    </div>
+
+                    <!-- Eligible Schemes ONLY -->
+                    <div class="scheme-results" id="eligible-schemes">
+                        <h4 class="schemes-section-title eligible-title" id="eligible-title">✅ Eligible Schemes</h4>
+                        <div class="scheme-cards-grid" id="eligible-cards">
+                            <!-- Dynamic scheme cards -->
+                        </div>
+                    </div>
+
+                    <button class="cta-btn" id="explain-btn" onclick="goToExplanations()">
+                        <span id="explain-btn-text">See Detailed Explanations</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="cta-arrow">
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                            <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 4: Human AI Explanation Mode -->
+        <section class="page page-explain hidden" id="page-4">
+            <div class="page-content">
+                <div class="page-header">
+                    <h2 class="page-title" id="page4-title">Understanding Your Results</h2>
+                    <p class="page-desc" id="page4-desc">Let me explain each scheme in simple, human language — as if a
+                        friendly government officer is speaking to you.</p>
+                </div>
+
+                <!-- Explanation Cards -->
+                <div class="explanation-cards" id="explanation-cards">
+                    <!-- Dynamic explanation cards -->
+                </div>
+
+                <!-- Scam Check Section -->
+                <div class="scam-check-section" id="scam-check-section">
+                    <div class="scam-header">
+                        <span class="scam-icon">🛡️</span>
+                        <h4 id="scam-title">Scam Alert Check</h4>
+                    </div>
+                    <p class="scam-desc" id="scam-desc">Heard about a scheme on WhatsApp? Let me verify it for you.</p>
+                    <div class="scam-input-row">
+                        <input type="text" class="scam-input" id="scam-input"
+                            placeholder="Type scheme name to verify..." autocomplete="off">
+                        <button class="scam-verify-btn" id="scam-verify-btn" onclick="verifyScheme()">Verify</button>
+                    </div>
+                    <div class="scam-result hidden" id="scam-result"></div>
+                </div>
+
+                <button class="cta-btn" id="guide-btn" onclick="goToGuide()">
+                    <span id="guide-btn-text">Start Application Guide</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="cta-arrow">
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                        <polyline points="12 5 19 12 12 19" />
+                    </svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- PAGE 5: Guided Application -->
+        <section class="page page-guide hidden" id="page-5">
+            <div class="page-content">
+                <div class="page-header">
+                    <h2 class="page-title" id="page5-title">Application Preparation Guide</h2>
+                    <p class="page-desc" id="page5-desc">I'll guide you step-by-step through the application process —
+                        like a friendly officer at the service center.</p>
+                </div>
+
+                <!-- Scheme Selector -->
+                <div class="guide-scheme-selector" id="guide-scheme-selector">
+                    <!-- Dynamic eligible scheme tabs -->
+                </div>
+
+                <!-- Active Guide Content -->
+                <div class="guide-container" id="guide-container">
+                    <!-- Profile Summary -->
+                    <div class="guide-section" id="guide-profile">
+                        <div class="guide-section-header">
+                            <span class="guide-section-icon">👤</span>
+                            <h4 id="guide-profile-title">Your Profile</h4>
+                        </div>
+                        <div class="guide-profile-grid" id="guide-profile-grid">
+                            <!-- Dynamic profile info -->
+                        </div>
+                    </div>
+
+                    <!-- Required Documents -->
+                    <div class="guide-section" id="guide-docs">
+                        <div class="guide-section-header">
+                            <span class="guide-section-icon">📋</span>
+                            <h4 id="guide-docs-title">Required Documents</h4>
+                        </div>
+                        <div class="doc-checklist-interactive" id="guide-doc-list">
+                            <!-- Dynamic document checklist -->
+                        </div>
+                    </div>
+
+                    <!-- How to Apply Section -->
+                    <div class="guide-section" id="guide-how-to-apply">
+                        <div class="guide-section-header">
+                            <span class="guide-section-icon">🚀</span>
+                            <h4 id="guide-how-to-apply-title">How to Apply</h4>
+                        </div>
+                        <div class="how-to-apply-content" id="guide-how-to-apply-content">
+                            <!-- Dynamic how-to-apply steps -->
+                        </div>
+                    </div>
+
+                    <!-- Step-by-Step Process -->
+                    <div class="guide-section" id="guide-steps">
+                        <div class="guide-section-header">
+                            <span class="guide-section-icon">📝</span>
+                            <h4 id="guide-steps-title">Application Steps</h4>
+                        </div>
+                        <div class="steps-timeline" id="guide-steps-list">
+                            <!-- Dynamic steps -->
+                        </div>
+                    </div>
+
+                    <!-- Human-in-the-loop Disclaimer -->
+                    <div class="human-loop-card" id="human-loop-card">
+                        <div class="hloop-icon">🤝</div>
+                        <h4 id="hloop-title">Human-in-the-Loop</h4>
+                        <p id="hloop-text">Final submission must be done by you at the official portal or Common Service
+                            Centre (CSC). JanMitra AI only prepares and guides — never auto-submits on your behalf.</p>
+                    </div>
+                </div>
+
+                <!-- JSON Output Toggle -->
+                <div class="json-section">
+                    <div class="json-header" onclick="toggleJsonPanel()">
+                        <strong id="json-header-text">📊 Structured Agent Response (JSON)</strong>
+                        <span class="json-toggle" id="json-toggle-icon">▼</span>
+                    </div>
+                    <div class="json-output json-collapsed" id="json-panel"></div>
+                </div>
+
+                <div class="guide-actions">
+                    <button class="cta-btn secondary" id="restart-btn" onclick="restartFlow()">
+                        <span id="restart-btn-text">Check for Another Person</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Floating Chatbot -->
+    <div class="chatbot-fab" id="chatbot-fab" onclick="toggleChatbot()">
+        <div class="chatbot-fab-pulse"></div>
+        <img src="/static/assets/ai/eilik.png" alt="JanMitra Chat" class="chatbot-fab-icon">
+    </div>
+
+    <!-- Chatbot Panel -->
+    <div class="chatbot-panel hidden" id="chatbot-panel">
+        <div class="chatbot-header">
+            <div class="chatbot-header-left">
+                <div class="chatbot-avatar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                    </svg>
+                </div>
+                <span class="chatbot-header-title" id="chatbot-title">JanMitra Assistant</span>
+            </div>
+            <button class="chatbot-close" onclick="toggleChatbot()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+            </button>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages">
+            <!-- Dynamic messages -->
+        </div>
+        <div class="chatbot-input-area">
+            <input type="text" class="chatbot-input" id="chatbot-input" placeholder="Ask about any scheme..."
+                autocomplete="off">
+            <button class="chatbot-send" id="chatbot-send" onclick="sendChatbotMessage()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="22" y1="2" x2="11" y2="13" />
+                    <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                </svg>
+            </button>
+            <button class="chatbot-mic" id="chatbot-mic" onclick="toggleChatbotMic()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                    <line x1="12" y1="19" x2="12" y2="23" />
+                    <line x1="8" y1="23" x2="16" y2="23" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast hidden" id="toast">
+        <span class="toast-icon" id="toast-icon"></span>
+        <span class="toast-message" id="toast-message"></span>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="schemes.js"></script>
+    <script src="eligibility.js"></script>
+    <script src="i18n.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
