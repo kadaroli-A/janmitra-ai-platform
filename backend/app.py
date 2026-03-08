@@ -126,6 +126,14 @@ Give a clear explanation.
 
 def generate_voice(text, language):
 
+    # Fix pronunciation of AI for speech only
+    if language == "en":
+        text = text.replace("AI", "A I")
+    elif language == "hi":
+        text = text.replace("एआई", "ए आई").replace("AI", "ए आई")
+    elif language == "ta":
+        text = text.replace("AI", "ஏ ஐ")
+
     voice_map = {
         "en": "Joanna",
         "hi": "Aditi",
@@ -184,6 +192,7 @@ def get_audio(file_name: str):
         media_type="audio/mpeg",
         filename=file_name
     )
+
 
 
 
