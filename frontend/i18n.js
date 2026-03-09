@@ -258,7 +258,7 @@ const I18N = {
         scamPlaceholder: "திட்டத்தின் பெயரை தட்டச்சு செய்யுங்கள்...",
         scamVerifyBtn: "சரிபார்",
         guideBtn: "விண்ணப்ப வழிகாட்டியைத் தொடங்கு",
-        voicePage4: "ஒவ்வொரு திட்டத்தையும் விரிவாக விளக்குகிறேன். எந்த திட்டத்தின் விளக்கத்தையும் கேட்க கேளுங்கள் பொத்தானை தட்டவும்.",
+        voicePage4: "ஒவ்வொரு திட்டத்தையும் விரிவாக விளக்குகிறேன். எந்த திட்டத்தின் விளக்கத்தையும் கேட்க கேளுங்கள் பட்டனைக்ை தட்டவும்.",
         voiceSchemeSelected: "நீங்கள் இந்த திட்டத்தைத் தேர்ந்தெடுத்துள்ளீர்கள். இங்கே விவரங்கள் உள்ளன.",
         // Page 5
         page5Title: "விண்ணப்ப தயாரிப்பு வழிகாட்டி",
@@ -458,6 +458,7 @@ const ANALYSIS_LABELS = {
 function getAnalysisLabel(key, lang) {
     return (ANALYSIS_LABELS[lang] && ANALYSIS_LABELS[lang][key]) || ANALYSIS_LABELS.en[key] || key;
 }
+
 
 
 
