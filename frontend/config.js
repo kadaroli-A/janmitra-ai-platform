@@ -1,7 +1,7 @@
 /* ============================================
    JanMitra AI — Configuration File
    
-   VIDEO TUTORIAL CONFIGURATION (ISSUE 5 FIX):
+   VIDEO TUTORIAL CONFIGURATION:
    Replace the placeholder VIDEO_ID values with your actual YouTube video IDs
    
    How to get YouTube video ID:
@@ -16,19 +16,17 @@
    
    Then set:
    ENGLISH_VIDEO_ID: "dQw4w9WgXcQ"
-   
-   ISSUE 5 FIX: Add your actual YouTube video IDs below
    ============================================ */
 
 const VIDEO_CONFIG = {
-    // English tutorial video ID - Replace with your actual video ID
-    ENGLISH_VIDEO_ID: "dQw4w9WgXcQ",  // Example ID - replace with actual
+    // English tutorial video ID
+    ENGLISH_VIDEO_ID: "VIDEO_ID_ENGLISH",
     
-    // Hindi tutorial video ID - Replace with your actual video ID
-    HINDI_VIDEO_ID: "dQw4w9WgXcQ",  // Example ID - replace with actual
+    // Hindi tutorial video ID
+    HINDI_VIDEO_ID: "VIDEO_ID_HINDI",
     
-    // Tamil tutorial video ID - Replace with your actual video ID
-    TAMIL_VIDEO_ID: "dQw4w9WgXcQ"  // Example ID - replace with actual
+    // Tamil tutorial video ID
+    TAMIL_VIDEO_ID: "VIDEO_ID_TAMIL"
 };
 
 // Export for use in app.js
