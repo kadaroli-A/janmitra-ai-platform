@@ -102,42 +102,24 @@ function resetAssistantState() {
 }
 
 // ---- Initialize ----
-// ISSUE 1 FIX: Proper initialization function
-function initApp() {
-    console.log('[Init] Starting JanMitra AI initialization...');
-    
+document.addEventListener('DOMContentLoaded', () => {
     initSpeechRecognition();
     initKeyboardHandlers();
     loadVoices();
     if (synthesis) { synthesis.onvoiceschanged = loadVoices; }
-    
     // Initialize voice guidance for input fields
     initVoiceGuidanceForInputFields();
-    
     // Apply default language translations on page load
     applyLanguage(currentLang);
-    
-    // Ensure we're on page 1
-    navigateToPage(1);
-    
-    // Reset assistant state
-    resetAssistantState();
-    
-    console.log('[Init] JanMitra AI initialized successfully');
-    
     // Play welcome voice after first user interaction (browsers block auto-play)
     const playWelcomeOnce = () => {
-        console.log('[Init] Playing welcome message');
         speakText(t('voiceWelcome', currentLang), currentLang);
         document.removeEventListener('click', playWelcomeOnce);
         document.removeEventListener('touchstart', playWelcomeOnce);
     };
     document.addEventListener('click', playWelcomeOnce, { once: true });
     document.addEventListener('touchstart', playWelcomeOnce, { once: true });
-}
-
-// Initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', initApp);
+});
 
 // ---- Voice Loading ----
 function loadVoices() {
@@ -181,51 +163,17 @@ function findVoiceForLang(lang) {
     return availableVoices.find(v => v.lang.startsWith('en')) || null;
 }
 
-// ============================================
-//  VOICE QUEUE SYSTEM (ISSUE 1 FIX)
-// ============================================
-let voiceQueue = [];
-let isCurrentlySpeaking = false;
-
-function speakText(text, lang) {
-    // Add to queue
-    voiceQueue.push({ text, lang });
-    
-    // Process queue if not already speaking
-    if (!isCurrentlySpeaking) {
-        processVoiceQueue();
-    }
-}
-
-function processVoiceQueue() {
-    if (voiceQueue.length === 0) {
-        isCurrentlySpeaking = false;
-        return;
-    }
-    
-    isCurrentlySpeaking = true;
-    const { text, lang } = voiceQueue.shift();
-    
-    speakTextImmediate(text, lang);
-}
-
 // ---- Speech Synthesis ----
-function speakTextImmediate(text, lang) {
+function speakText(text, lang) {
     try {
-        if (!synthesis || typeof synthesis.speak !== 'function') {
-            processVoiceQueue(); // Continue to next in queue
-            return;
-        }
-        
-        // Cancel any currently playing speech
-        synthesis.cancel();
+        if (!synthesis || typeof synthesis.speak !== 'function') return;
+      synthesis.cancel();
 
-        // stop backend audio if playing
-        if (currentAudio) {
-            currentAudio.pause();
-            currentAudio.currentTime = 0;
-        }
-        
+// stop backend audio if playing
+if (currentAudio) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+}
         let speechText = prepareSpeechText(text);
         
         // Fix pronunciation for speech-only text (UI text remains unchanged)
@@ -290,35 +238,17 @@ if (currentLang === "ta") {
         } else {
             console.warn(`No suitable voice found for language: ${lang}`);
         }
-        utterance.onend = () => {
-            // When speech ends, process next item in queue
-            processVoiceQueue();
-        };
-        
         utterance.onerror = (e) => {
-            if (e.error !== "interrupted") {
-                console.warn("TTS error:", e.error);
-            }
-            // Continue to next in queue even on error
-            processVoiceQueue();
-        };
-        
+    if (e.error !== "interrupted") {
+        console.warn("TTS error:", e.error);
+    }
+};
         window.speechSynthesis.cancel();
         synthesis.speak(utterance);
-    } catch (err) { 
-        console.warn('TTS failed:', err);
-        processVoiceQueue(); // Continue to next in queue
-    }
+    } catch (err) { console.warn('TTS failed:', err); }
 }
 
-function stopSpeech() { 
-    try { 
-        if (synthesis) synthesis.cancel();
-        // Clear voice queue
-        voiceQueue = [];
-        isCurrentlySpeaking = false;
-    } catch (e) { } 
-}
+function stopSpeech() { try { if (synthesis) synthesis.cancel(); } catch (e) { } }
 
 // ---- Speech Recognition ----
 function initSpeechRecognition() {
@@ -1583,83 +1513,31 @@ function sendChatbotMessage() {
     if (!text) return;
     input.value = '';
     addChatbotMessage(text, 'user');
-    
-    // ISSUE 3 FIX: Correct request format to match backend schema
-    setTimeout(async () => {
-        try {
-            // Set assistant to thinking state
-            setFloatingAssistantState('robotThinking');
-            
-            console.log('[Chatbot] Sending request with text:', text);
-            
-            const response = await fetch("https://janmitra-backend.onrender.com/ask-ai", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    transcript: text,
-                    language: currentLang,
-                    input: {
-                        question: text
-                    }
-                })
-            });
+    // Process query
+   setTimeout(async () => {
 
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+    const response = await fetch("http://127.0.0.1:8000/ask-ai", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            transcript: text,
+            language: currentLang,
+            input: {
+                question: text
             }
+        })
+    });
 
-            const data = await response.json();
-            
-            console.log('[Chatbot] Backend response:', data);
+    const data = await response.json();
 
-            if (data.response) {
-                addChatbotMessage(data.response, 'bot');
-                
-                // ISSUE 8 FIX: Play Polly-generated audio
-                if (data.audio) {
-                    // Stop browser TTS
-                    window.speechSynthesis.cancel();
-                    
-                    // Stop previous audio if playing
-                    if (currentAudio) {
-                        currentAudio.pause();
-                        currentAudio.currentTime = 0;
-                    }
-                    
-                    // Set assistant to speaking state
-                    setFloatingAssistantState('robotSpeaking');
-                    
-                    currentAudio = new Audio("https://janmitra-backend.onrender.com/audio/" + data.audio);
-                    currentAudio.play();
-                    
-                    // Reset to idle when audio ends
-                    currentAudio.onended = () => {
-                        setFloatingAssistantState('idle');
-                    };
-                } else {
-                    // Fallback to browser TTS if Polly audio not available
-                    setFloatingAssistantState('robotSpeaking');
-                    speakText(data.response, currentLang);
-                }
-            } else {
-                throw new Error('No response from backend');
-            }
-            
-        } catch (error) {
-            console.error('[Chatbot] Error:', error);
-            
-            const errorMsg = currentLang === 'hi' 
-                ? 'क्षमा करें, मुझे जवाब देने में समस्या हो रही है। कृपया पुनः प्रयास करें।'
-                : currentLang === 'ta'
-                ? 'மன்னிக்கவும், பதிலளிப்பதில் சிக்கல் உள்ளது. மீண்டும் முயற்சிக்கவும்.'
-                : 'Sorry, I\'m having trouble responding. Please try again.';
-            
-            addChatbotMessage(errorMsg, 'bot');
-            setFloatingAssistantState('idle');
-        }
-    }, 500);
+    addChatbotMessage(data.response, 'bot');
+
+    const audio = new Audio("http://127.0.0.1:8000/audio/" + data.audio);
+    audio.play();
+
+}, 500);
 }
 
 function processChatbotQuery(query, lang) {
@@ -1730,7 +1608,7 @@ function escapeForAttr(text) { return text.replace(/`/g, '\\`').replace(/\\/g, '
 
 
 // ============================================
-//  FORM SUBMISSION (Page 2) - ISSUE 3 FIX
+//  FORM SUBMISSION (Page 2)
 // ============================================
 function submitApplicantForm() {
     const name = document.getElementById('input-name')?.value.trim();
@@ -1756,19 +1634,19 @@ function submitApplicantForm() {
     collectedProfile.occupation = occupation;
     collectedProfile.state = state;
     
-    // ISSUE 3 FIX: Greet user by name before analysis
-    const greetingMsg = currentLang === 'hi' 
-        ? `नमस्ते ${name}। मैं अब आपकी सरकारी कल्याण योजनाओं के लिए पात्रता का विश्लेषण कर रहा हूं।`
+    // Voice confirmation
+    const confirmMsg = currentLang === 'hi' 
+        ? `धन्यवाद ${name}। अब मैं आपके लिए योजनाओं का विश्लेषण कर रहा हूं।`
         : currentLang === 'ta'
-        ? `வணக்கம் ${name}. நான் இப்போது அரசு நல திட்டங்களுக்கான உங்கள் தகுதியை பகுப்பாய்வு செய்கிறேன்.`
-        : `Hello ${name}. I am now analyzing your eligibility for government welfare schemes.`;
+        ? `நன்றி ${name}. இப்போது உங்களுக்கான திட்டங்களை பகுப்பாய்வு செய்கிறேன்.`
+        : `Thank you ${name}. Now analyzing schemes for you.`;
     
-    speakText(greetingMsg, currentLang);
+    speakText(confirmMsg, currentLang);
     
-    // Navigate to analysis page after greeting completes
+    // Navigate to analysis page
     setTimeout(() => {
         runAgentAnalysis();
-    }, 2000); // Increased delay to allow greeting to complete
+    }, 800);
 }
 
 // Update form labels when language changes
@@ -2341,12 +2219,14 @@ if (!document.getElementById('voice-status-css')) {
 }
 
 // ============================================
-//  VOICE GUIDANCE FOR INPUT FIELDS (ISSUE 2 FIX)
+//  VOICE GUIDANCE FOR INPUT FIELDS
 // ============================================
 
+// Track which fields have already been focused to avoid repeated voice guidance
+let focusedFields = new Set();
+
 function initVoiceGuidanceForInputFields() {
-    // Add click event listeners to all form input fields
-    // ISSUE 2 FIX: Every click triggers voice guidance (not just first focus)
+    // Add onFocus event listeners to all form input fields
     const inputFields = [
         { id: 'input-name', key: 'voiceGuidanceName' },
         { id: 'input-age', key: 'voiceGuidanceAge' },
@@ -2358,13 +2238,12 @@ function initVoiceGuidanceForInputFields() {
     inputFields.forEach(field => {
         const element = document.getElementById(field.id);
         if (element) {
-            // Use click event to trigger voice guidance every time
-            element.addEventListener('click', () => {
+            element.addEventListener('focus', () => {
                 triggerVoiceInstruction(field.key, currentLang);
             });
             
-            // Also add focus event for keyboard navigation
-            element.addEventListener('focus', () => {
+            // Also add click event for better mobile support
+            element.addEventListener('click', () => {
                 triggerVoiceInstruction(field.key, currentLang);
             });
         }
@@ -2372,7 +2251,15 @@ function initVoiceGuidanceForInputFields() {
 }
 
 function triggerVoiceInstruction(fieldKey, selectedLanguage) {
-    // ISSUE 2 FIX: Play voice guidance every time (removed the focusedFields check)
+    // Only play voice guidance once per focus interaction
+    const fieldId = `${fieldKey}_${selectedLanguage}`;
+    
+    if (focusedFields.has(fieldId)) {
+        return; // Already played for this field in this session
+    }
+    
+    focusedFields.add(fieldId);
+    
     // Get the voice guidance text from i18n
     const voiceText = t(fieldKey, selectedLanguage);
     
@@ -2384,9 +2271,9 @@ function triggerVoiceInstruction(fieldKey, selectedLanguage) {
     }
 }
 
-// Reset function kept for compatibility
+// Reset focused fields when navigating to a new page or restarting
 function resetVoiceGuidanceState() {
-    // No longer needed but kept for compatibility
+    focusedFields.clear();
 }
 
 // Update the restart function to reset voice guidance state
@@ -2410,14 +2297,13 @@ navigateToPage = function(pageNum) {
 
 let aiRequestRunning = false;
 async function askBackendAI(question, lang) {
-    // ISSUE 3 FIX: Use correct variable names and request format
+
     if (aiRequestRunning) return;
     aiRequestRunning = true;
 
     try {
-        console.log('[Backend AI] Sending request:', question);
-        
-        const response = await fetch("https://janmitra-backend.onrender.com/ask-ai", {
+
+        const response = await fetch("http://127.0.0.1:8000/ask-ai", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -2433,25 +2319,27 @@ async function askBackendAI(question, lang) {
 
         const data = await response.json();
 
-        console.log("[Backend AI] Response:", data);
+        console.log("Backend response:", data);
 
         if (data.audio) {
-            // stop browser speech
-            window.speechSynthesis.cancel();
 
-            // stop previous audio if playing
-            if (currentAudio) {
-                currentAudio.pause();
-                currentAudio.currentTime = 0;
-            }
+    // stop browser speech
+    window.speechSynthesis.cancel();
 
-            currentAudio = new Audio("https://janmitra-backend.onrender.com" + data.audio);
-            currentAudio.play();
-        }
-
-    } catch (error) {
-        console.error("[Backend AI] Error:", error);
-    } finally {
-        aiRequestRunning = false;
+    // stop previous audio if playing
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
     }
+
+    currentAudio = new Audio("http://127.0.0.1:8000/audio/" + data.audio);
+    currentAudio.play();
+}
+
+  } catch (error) {
+    console.error("Backend error:", error);
+} finally {
+    aiRequestRunning = false;
+}
+
 }
